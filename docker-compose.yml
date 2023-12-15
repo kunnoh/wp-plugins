@@ -1,0 +1,109 @@
+version: '3.9'
+
+services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: nginx-phpfpm
+    volumes:
+      - ./nginx/sites-available/:/etc/nginx/sites-available/:ro
+      - ./nginx/nginx.conf:/etc/nginx/sites-available/nginx.conf:ro
+      - ./nginx/html:/website/:ro
+      - ./logs/nginx/:/var/log/nginx/:rw
+    networks:
+      - fpmnet  
+    restart: always
+    healthcheck:
+      test: ["nginx", "-t"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  phpfpm:
+    build:
+      context: ./php-fpm
+      dockerfile: Dockerfile
+      args:
+        - PHP_VERSION: ${PHP_VERSION}
+        - XDEBUG_PORT: ${XDEBUG_PORT}
+    container_name: phpfpm-nginx
+    volumes:
+      - ./logs/php-fpm/:/var/log/:rw
+      - ./php-fpm/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
+      - ./php-fpm/www.conf:/etc/php/8.2/fpm/pool.d/www.conf:ro
+    depends_on:
+      - postgres
+    networks:
+      - fpmnet
+    ports:
+      - 9000:9000
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/ping"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  postgres:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    volumes:
+      - /data/postgres-data/:/var/lib/postgresql/data:rw
+      - ./logs/postgres/:/var/log/postgres/:rw
+    networks:
+      - fpmnet
+    ports:
+      - 5432:5432
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-U", "username", "-d", "database_name", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  pgadmin4:
+    image: dpage/pgadmin4
+    hostname: pgadmin4
+    container_name: pgad4
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - 8080:80
+    networks:
+      - fpmnet
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -h db"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  fpmnet:
+    bridge
