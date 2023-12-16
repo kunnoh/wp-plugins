@@ -46,7 +46,7 @@
     <style>
         :root {
             --pri-bg-color: #9704ff;
-            --sec-bg-color: #220505cd;
+            --sec-bg-color: #220505b0;
             --pri-text-color: #04ffd5;
             --sec-text-color: #fafa04;
             --border-radius: 10px;
@@ -57,7 +57,7 @@
         }
         body{
             margin: 0;
-            padding: 0;
+            padding: 1em;
             font-size: 1rem;
             background: rgb(97,92,185);
             background: linear-gradient(90deg, rgba(97,92,185,1) 0%, rgba(151,4,255,1) 39%, rgba(138,56,10,1) 100%); 
@@ -68,6 +68,7 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            border-radius: var(--border-radius);
         }
         h1, h2, p, ul {
             margin: 0;
@@ -107,7 +108,7 @@
             align-items: center;
             flex-direction: column;
             gap: 3em;
-            padding: 2em;
+            padding: 1em;
         }
         section{
             display: flex;
