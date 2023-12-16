@@ -240,3 +240,17 @@
 2023/12/16 14:05:15 [notice] 1#1: signal 17 (SIGCHLD) received from 31
 2023/12/16 14:05:15 [notice] 1#1: worker process 31 exited with code 0
 2023/12/16 14:05:15 [notice] 1#1: exit
+2023/12/16 14:21:00 [notice] 1#1: using the "epoll" event method
+2023/12/16 14:21:00 [notice] 1#1: nginx/1.25.3
+2023/12/16 14:21:00 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14) 
+2023/12/16 14:21:00 [notice] 1#1: OS: Linux 6.6.7-arch1-1
+2023/12/16 14:21:00 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1073741816:1073741816
+2023/12/16 14:21:00 [notice] 1#1: start worker processes
+2023/12/16 14:21:00 [notice] 1#1: start worker process 29
+2023/12/16 14:21:00 [notice] 1#1: start worker process 30
+2023/12/16 14:21:00 [notice] 1#1: start worker process 31
+2023/12/16 14:21:00 [notice] 1#1: start worker process 32
+2023/12/16 14:21:13 [error] 29#29: *1 open() "/usr/share/nginx/html/assets/css/stylo.css" failed (2: No such file or directory), client: 172.28.0.1, server: localhost, request: "GET /assets/css/stylo.css HTTP/1.1", host: "localhost:808", referrer: "http://localhost:808/"
+2023/12/16 14:21:14 [error] 29#29: *1 open() "/usr/share/nginx/html/favicon.ico" failed (2: No such file or directory), client: 172.28.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:808", referrer: "http://localhost:808/"
+2023/12/16 14:21:55 [error] 29#29: *1 open() "/usr/share/nginx/html/assets/css/stylo.css" failed (2: No such file or directory), client: 172.28.0.1, server: localhost, request: "GET /assets/css/stylo.css HTTP/1.1", host: "localhost:808", referrer: "http://localhost:808/"
+2023/12/16 14:23:21 [error] 30#30: *2 open() "/usr/share/nginx/html/assets/css/stylo.css" failed (2: No such file or directory), client: 172.28.0.1, server: localhost, request: "GET /assets/css/stylo.css HTTP/1.1", host: "localhost:808", referrer: "http://localhost:808/"

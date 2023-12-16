@@ -42,9 +42,14 @@
         <p>&copy; 2024. All rights reserved.</p>
     </footer>
     <style>
-        :root{
-
+        :root {
+            --pri-bg-color: rgb(57, 32, 80);
+            --sec-bg-color: #220505cd;
+            --pri-text-color: #04ffd5;
+            --sec-text-color: #fafa04;
+            --border-radius: 10px;
         }
+
         html{
             font-size: 16px;
         }
@@ -52,16 +57,20 @@
             margin: 0;
             padding: 0;
             font-size: 1rem;
-            background-color: rgb(57, 32, 80);
-            color: aliceblue;
+            background-color: var(--pri-bg-color);
+            color: var(--pri-text-color);
         }
         h1, h2, p, ul {
             margin: 0;
             padding: 0;
         }
+        a{
+            text-decoration: none;
+            color: var(--sec-text-color);
+        }
 
         header{
-            background-color: #372b2b;
+            background-color: var(--sec-bg-color);
             padding: 20px;
             text-align: center;
         }
@@ -75,7 +84,7 @@
         /* main */
         main{
             height: 80vh;
-            background-color: rgba(47, 13, 79, 0.379);
+            background-color: var(--pri-bg-color);
             display: flex;
             justify-content: center;
             align-items: center;
