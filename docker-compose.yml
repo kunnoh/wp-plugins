@@ -7,17 +7,19 @@ services:
       dockerfile: Dockerfile
     container_name: nginx-phpfpm
     volumes:
-      - ./nginx/sites-available/:/etc/nginx/sites-available/:ro
-      - ./nginx/nginx.conf:/etc/nginx/sites-available/nginx.conf:ro
-      - ./nginx/html:/website/:ro
+      - ./nginx/sites-available/:/etc/nginx/sites-available/:rw
+      - ./nginx/nginx.conf:/etc/nginx/sites-available/nginx.conf:rw
+      - ./nginx/html:/usr/share/nginx/html/:rw
       - ./logs/nginx/:/var/log/nginx/:rw
     networks:
-      - fpmnet  
+      - fpmnet
+    ports:
+      - 808:80
     restart: always
     healthcheck:
-      test: ["nginx", "-t"]
-      interval: 1m30s
-      timeout: 30s
+      test: ["CMD-SHELL", "nginx -t"]
+      interval: 10s
+      timeout: 5s
       retries: 5
       start_period: 30s
     logging:
@@ -30,25 +32,24 @@ services:
     build:
       context: ./php-fpm
       dockerfile: Dockerfile
-      args:
-        - PHP_VERSION: ${PHP_VERSION}
-        - XDEBUG_PORT: ${XDEBUG_PORT}
+    env_file:
+      - ./local.env
     container_name: phpfpm-nginx
     volumes:
       - ./logs/php-fpm/:/var/log/:rw
       - ./php-fpm/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
       - ./php-fpm/www.conf:/etc/php/8.2/fpm/pool.d/www.conf:ro
     depends_on:
-      - postgres
+      - pgdb
     networks:
       - fpmnet
     ports:
       - 9000:9000
     restart: always
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/ping"]
-      interval: 1m30s
-      timeout: 30s
+      test: ["CMD-SHELL", "curl -f http://localhost:9000/ping"]
+      interval: 10s
+      timeout: 5s
       retries: 5
       start_period: 30s
     logging:
@@ -57,10 +58,11 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  postgres:
+  pgdb:
     build:
       context: ./db
       dockerfile: Dockerfile
+    container_name: postgresdb
     volumes:
       - /data/postgres-data/:/var/lib/postgresql/data:rw
       - ./logs/postgres/:/var/log/postgres/:rw
@@ -70,7 +72,7 @@ services:
       - 5432:5432
     restart: always
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready", "-U", "username", "-d", "database_name", "-h", "localhost"]
+      test: ["CMD-SHELL", "pg_isready -U username -d database_name", "-h", "localhost"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -83,10 +85,9 @@ services:
 
   pgadmin4:
     image: dpage/pgadmin4
-    hostname: pgadmin4
     container_name: pgad4
     depends_on:
-      - db
+      - pgdb
     restart: always
     ports:
       - 8080:80
@@ -106,4 +107,4 @@ services:
 
 networks:
   fpmnet:
-    bridge
+    driver: bridge

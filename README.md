@@ -1,5 +1,11 @@
 # php-fpm, nginx, postgres
 
+### container names
+- nginx - nginx-phpfpm
+- php-fpm - phpfpm-nginx
+- postgresdb - postgres
+- pgad4 - pgadmin4
+
 ## Install and run
 
 clone
@@ -7,16 +13,15 @@ clone
 git clone 
 ```
 
-start
-
-```sh
-cd nginx-phpfpm
-```
-
-
 Build all images in docker-compose
 ```sh
 make build
+```
+
+start containers in docker-compose
+
+```sh
+cd nginx-phpfpm
 ```
 
 Run all containers in docker-compose
@@ -53,6 +58,11 @@ docker-compose ps
 
 ```sh
 docker-compose logs <image name or id>
+``` 
+
+nginx logs
+```sh
+docker-compose logs nginx-phpfpm
 ```
 
 

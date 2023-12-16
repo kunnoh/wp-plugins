@@ -1,25 +1,28 @@
-ENV=.env
+ENV=./local.env
 
+.DEFAULT_GOAL := help
 .PHONY: build start stop restart rebuild upgrade destroy
-default: start
 
 build:
 	@echo "[*] Building images..."
+	@docker-compose
 
 start:
-	@echo "[*] STARTING"
+	@echo "[*] STARTING: building containers..."
 	@docker-compose --env-file=$(ENV) -f docker-compose.yml up -d
 
 stop:
-	@echo "[*] STOPPING"
+	@echo "[*] STOPPING: stopping containers"
 	@docker-compose --env-file=$(ENV) -f docker-compose.yml down
 
 restart: stop start
 
 rebuild:
 	@echo "[*] REBUILDING"
+	@make stop
 	@docker-compose --env-file=$(ENV) -f docker-compose.yml up --build -d
-
+	@make start
+	
 upgrade:
 	@echo "[*] UPGRADING CONTAINERS"
 	@docker-compose --env-file=$(ENV) pull
@@ -32,4 +35,8 @@ destroy:
 .DEFAULT_GOAL := help
 
 help:
-	@echo "Usage: make [start|stop|restart|rebuild|upgrade|destroy]"
+	@echo ""
+	@echo "[*] Usage: make [ start | stop | restart | rebuild | upgrade | destroy ]"
+	@echo ""
+	@echo "[-] example: make start"
+	@echo ""
