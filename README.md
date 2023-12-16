@@ -13,15 +13,10 @@ clone
 git clone 
 ```
 
-Build all images in docker-compose
-```sh
-make build
-```
-
 start containers in docker-compose
 
 ```sh
-cd nginx-phpfpm
+cd php-fpm
 ```
 
 Run all containers in docker-compose

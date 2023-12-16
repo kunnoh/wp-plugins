@@ -8,11 +8,11 @@
 </head>
 <body>
     <header>
-        <a href="/#home">
+        <a href="/">
             <h1 style="color: #ff04cd;">Basic Web</h1>
         </a>
         <nav>
-            <ul>
+            <ul class="row">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
@@ -24,11 +24,25 @@
         <section id="home">
             <h2>Home</h2>
             <p>Welcome to my site</p>
+
+            <button class="btn" type="button">Say Hi</button>
         </section>
 
         <section id="about">
             <h2>About</h2>
             <p>This is my info</p>
+        </section>
+
+        <section id="services">
+            <h2>Services</h2>
+            <div class="card-box">
+                <div class="card-img">
+                    <img src="/assets/img/chanelle.jpg" alt="chanelle">
+                </div>
+                <div class="card-content">
+                    <h2>Alyah <br><span>Actress</span></h2>
+                </div>
+            </div>
         </section>
 
         <section id="contact">
@@ -43,97 +57,5 @@
     <footer>
         <p>&copy; 2024. All rights reserved.</p>
     </footer>
-    <style>
-        :root {
-            --pri-bg-color: #9704ff;
-            --sec-bg-color: #220505b0;
-            --pri-text-color: #04ffd5;
-            --sec-text-color: #fafa04;
-            --border-radius: 10px;
-        }
-
-        html{
-            font-size: 16px;
-        }
-        body{
-            margin: 0;
-            padding: 1em;
-            font-size: 1rem;
-            background: rgb(97,92,185);
-            background: linear-gradient(90deg, rgba(97,92,185,1) 0%, rgba(151,4,255,1) 39%, rgba(138,56,10,1) 100%); 
-            /* background-color: var(--pri-bg-color); */
-            color: var(--pri-text-color);
-        }
-        header{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            border-radius: var(--border-radius);
-        }
-        h1, h2, p, ul {
-            margin: 0;
-            padding: 0;
-        }
-        a{
-            text-decoration: none;
-            color: var(--sec-text-color);
-        }
-        a:hover{
-            color: #04fa46;
-        }
-
-        header{
-            background-color: var(--sec-bg-color);
-            padding: 20px;
-            text-align: center;
-        }
-
-        /* nav menu */
-        nav ul {
-            list-style-type: none;
-            padding: 1em;
-            display: flex;
-            flex-direction: row;
-            margin-inline-end: 2em;
-        }
-        nav ul li {
-            margin-inline: 1em;
-        }
-        /* main */
-        main{
-            min-height: 80vh;
-            /* background-color: var(--pri-bg-color); */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 3em;
-            padding: 1em;
-        }
-        section{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            gap: 1em;
-            padding: 2em;
-            min-height: 20em;
-            width: 95%;
-            background: rgba(28, 25, 25, 0.3);
-            backdrop-filter: blur(5px);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            /* background-color: var(--sec-bg-color); */
-            border-radius: var(--border-radius);
-        }
-        footer{
-            padding: 1em;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            color: #f2ff04;
-        }
-    </style>
 </body>
 </html>

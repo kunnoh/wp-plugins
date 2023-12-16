@@ -1,11 +1,11 @@
 version: '3.9'
 
 services:
-  nginx:
+  web:
     build:
       context: ./nginx
       dockerfile: Dockerfile
-    container_name: nginx-phpfpm
+    container_name: web-nginx
     volumes:
       - ./nginx/sites-available/:/etc/nginx/sites-available/:rw
       - ./nginx/nginx.conf:/etc/nginx/sites-available/nginx.conf:rw
@@ -64,7 +64,7 @@ services:
       dockerfile: Dockerfile
     container_name: postgresdb
     volumes:
-      - /data/postgres-data/:/var/lib/postgresql/data:rw
+      - ./db/postgres-data/:/var/lib/postgresql/data:rw
       - ./logs/postgres/:/var/log/postgres/:rw
     networks:
       - fpmnet
@@ -83,8 +83,12 @@ services:
         max-size: "10m"
         max-file: "3"
 
+
   pgadmin4:
-    image: dpage/pgadmin4
+    build:
+      context: ./pgadmin
+      dockerfile: Dockerfile
+
     container_name: pgad4
     depends_on:
       - pgdb
