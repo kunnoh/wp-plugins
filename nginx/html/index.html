@@ -8,7 +8,9 @@
 </head>
 <body>
     <header>
-        <h1>Basic Web</h1>
+        <a href="/#home">
+            <h1 style="color: #ff04cd;">Basic Web</h1>
+        </a>
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
@@ -60,6 +62,11 @@
             background-color: var(--pri-bg-color);
             color: var(--pri-text-color);
         }
+        header{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
         h1, h2, p, ul {
             margin: 0;
             padding: 0;
@@ -67,6 +74,9 @@
         a{
             text-decoration: none;
             color: var(--sec-text-color);
+        }
+        a:hover{
+            color: #8ffa04;
         }
 
         header{
@@ -79,16 +89,23 @@
         nav ul {
             list-style-type: none;
             padding: 1em;
+            display: flex;
+            flex-direction: row;
+            margin-inline-end: 2em;
         }
-
+        nav ul li {
+            margin-inline: 1em;
+        }
         /* main */
         main{
-            height: 80vh;
+            min-height: 80vh;
             background-color: var(--pri-bg-color);
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
+            gap: 3em;
+            padding: 2em;
         }
         section{
             display: flex;
@@ -96,6 +113,11 @@
             align-items: center;
             flex-direction: column;
             gap: 1em;
+            padding: 2em;
+            min-height: 20em;
+            width: 95%;
+            background-color: var(--sec-bg-color);
+            border-radius: var(--border-radius);
         }
         footer{
             padding: 1em;
@@ -103,7 +125,6 @@
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            
         }
     </style>
 </body>
