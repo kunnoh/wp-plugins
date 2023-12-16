@@ -45,7 +45,7 @@
     </footer>
     <style>
         :root {
-            --pri-bg-color: #01b170;
+            --pri-bg-color: #9704ff;
             --sec-bg-color: #220505cd;
             --pri-text-color: #04ffd5;
             --sec-text-color: #fafa04;
@@ -59,7 +59,9 @@
             margin: 0;
             padding: 0;
             font-size: 1rem;
-            background-color: var(--pri-bg-color);
+            background: rgb(97,92,185);
+            background: linear-gradient(90deg, rgba(97,92,185,1) 0%, rgba(151,4,255,1) 39%, rgba(138,56,10,1) 100%); 
+            /* background-color: var(--pri-bg-color); */
             color: var(--pri-text-color);
         }
         header{
@@ -99,7 +101,7 @@
         /* main */
         main{
             min-height: 80vh;
-            background-color: var(--pri-bg-color);
+            /* background-color: var(--pri-bg-color); */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -116,7 +118,11 @@
             padding: 2em;
             min-height: 20em;
             width: 95%;
-            background-color: var(--sec-bg-color);
+            background: rgba(28, 25, 25, 0.3);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            /* background-color: var(--sec-bg-color); */
             border-radius: var(--border-radius);
         }
         footer{
