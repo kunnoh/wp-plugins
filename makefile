@@ -1,7 +1,7 @@
 ENV=./local.env
 
 .DEFAULT_GOAL := help
-.PHONY: build start stop restart rebuild upgrade destroy
+.PHONY: build start stop restart rebuild destroy
 
 build:
 	@echo ""
@@ -35,13 +35,6 @@ rebuild:
 	@make start
 	@echo ""
 
-upgrade:
-	@echo ""
-	@echo "[*] UPGRADING CONTAINERS"
-	@docker-compose --env-file=$(ENV) pull
-	@$(MAKE) restart
-	@echo ""
-
 destroy:
 	@echo ""
 	@echo "[*] DESTROYING ALL CONTAINERS AND VOLUMES"
@@ -57,7 +50,7 @@ destroy:
 
 help:
 	@echo ""
-	@echo "[*] Usage: make [ start | stop | restart | rebuild | upgrade | destroy ]"
+	@echo "[*] Usage: make [ start | stop | restart | rebuild | destroy ]"
 	@echo ""
 	@echo "[+] example: make start"
 	@echo ""

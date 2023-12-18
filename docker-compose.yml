@@ -36,9 +36,9 @@ services:
       - ./local.env
     container_name: phpfpm-nginx
     volumes:
-      - ./logs/php-fpm/:/var/log/:rw
       - ./php-fpm/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
       - ./php-fpm/www.conf:/etc/php/8.2/fpm/pool.d/www.conf:ro
+      - ./logs/php-fpm/:/var/log/:rw
     depends_on:
       - pgdb
     networks:
@@ -58,57 +58,9 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  pgdb:
-    build:
-      context: ./db
-      dockerfile: Dockerfile
-    container_name: postgresdb
-    volumes:
-      - ./db/postgres-data/:/var/lib/postgresql/data:rw
-      - ./logs/postgres/:/var/log/postgres/:rw
-    networks:
-      - fpmnet
-    ports:
-      - 5432:5432
-    restart: always
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U username -d database_name", "-h", "localhost"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 10s
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
-
-
-  pgadmin4:
-    build:
-      context: ./pgadmin
-      dockerfile: Dockerfile
-
-    container_name: pgad4
-    depends_on:
-      - pgdb
-    restart: always
-    ports:
-      - 8080:80
-    networks:
-      - fpmnet
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -h db"]
-      interval: 10s
-      retries: 5
-      timeout: 5s
-      start_period: 10s
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
-
 networks:
   fpmnet:
     driver: bridge
+
+volumes:
+  logs:
