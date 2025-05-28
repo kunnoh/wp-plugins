@@ -1,5 +1,2 @@
-log/nginx/*
-log/postgres/*
-log/php-fpm/*
-db/backup/*
-db/postgres/*
+**/.env
+**/node_modules
