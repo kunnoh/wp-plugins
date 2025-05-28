@@ -1,12 +1,12 @@
 <?php
 // This file is generated. Do not modify it manually.
 return array(
-	'listing' => array(
+	'listings' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'create-block/listing',
+		'name' => 'create-block/listings',
 		'version' => '0.1.0',
-		'title' => 'Listing',
+		'title' => 'Listings',
 		'category' => 'widgets',
 		'icon' => 'smiley',
 		'description' => 'Example block scaffolded with Create Block tool.',
@@ -16,7 +16,7 @@ return array(
 		'supports' => array(
 			'html' => false
 		),
-		'textdomain' => 'listing',
+		'textdomain' => 'listings',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
