@@ -8,19 +8,22 @@ return array(
 		'version' => '0.1.0',
 		'title' => 'Listing',
 		'category' => 'widgets',
-		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Dynamic columns for listing',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'color' => array(
+				'background' => false,
+				'text' => true
+			),
+			'html' => false,
+			'typography' => array(
+				'fontSize' => true
+			)
 		),
 		'textdomain' => 'listing',
 		'editorScript' => 'file:./index.js',
-		'editorStyle' => 'file:./index.css',
-		'style' => 'file:./style-index.css',
-		'render' => 'file:./render.php',
-		'viewScript' => 'file:./view.js'
+		'render' => 'file:./render.php'
 	)
 );

@@ -13,13 +13,6 @@ import { __ } from '@wordpress/i18n';
  */
 import { useBlockProps } from '@wordpress/block-editor';
 
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
-import './editor.scss';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -30,9 +23,10 @@ import './editor.scss';
  * @return {Element} Element to render.
  */
 export default function Edit() {
+	const currentYear = new Date().getFullYear().toString();
 	return (
 		<p { ...useBlockProps() }>
-			{ __( 'Listing – hello from the editor!', 'listing' ) }
+			&copy; { currentYear }
 		</p>
 	);
 }
