@@ -1,0 +1,74 @@
+name: Deploy Plugins to Server
+
+on:
+  push:
+    branches:
+      - add branch
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Install git ssh keys
+      - name: Install SSH keys
+        run: |
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} > ~/.ssh/known_hosts
+      
+      # Step 3: Connect to server and deploy
+      - name: Connect to server and deploy
+        run: |
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "
+            set -e
+            
+            # Add GitHub to known_hosts to avoid Host key verification failure
+            mkdir -p ~/.ssh
+            grep -q github.com ~/.ssh/known_hosts || ssh-keyscan -H github.com >> ~/.ssh/known_hosts # Avoid duplicates entries
+
+            if [ ! -d ${{ secrets.WORK_DIR }} ]; then
+              git clone ${{ secrets.SSH_REPO }} "${{ secrets.WORK_DIR }}"
+              cd ${{ secrets.WORK_DIR }}
+            else
+              cd "${{ secrets.WORK_DIR }}"
+              echo "Pulling latest changes"
+              git fetch origin
+              git checkout ${{ secrets.MAIN_BRANCH }}
+              git pull origin ${{ secrets.MAIN_BRANCH }}
+            fi
+            
+            echo "Exporting secrets"
+            export DB_ROOT_PASSWORD="${{ secrets.DB_ROOT_PASSWORD }}"
+            export DB_USER="${{ secrets.DB_USER }}"
+            export DB_DATABASE="${{ secrets.DB_DATABASE }}"
+            export DB_PASSWORD="${{ secrets.DB_PASSWORD }}"
+            export WORDPRESS_DB_NAME="${{ secrets.WORDPRESS_DB_NAME }}"
+            export WORDPRESS_DB_USER="${{ secrets.WORDPRESS_DB_USER }}"
+            export WORDPRESS_DB_PASSWORD="${{ secrets.WORDPRESS_DB_PASSWORD }}"
+            export WORDPRESS_DB_HOST="${{ secrets.WORDPRESS_DB_HOST }}"
+            export WORDPRESS_WP_PLUGIN_DIR="${{ secrets.WORDPRESS_WP_PLUGIN_DIR }}"
+            export WORDPRESS_WP_PLUGIN_URL="${{ secrets.WORDPRESS_WP_PLUGIN_URL }}"
+            export CERTBOT_EMAIL="${{ secrets.CERTBOT_EMAIL }}"
+            export DOMAIN="${{ secrets.DOMAIN }}"
+
+            echo "Stopping old containers"
+            docker compose down || { echo "Failed to stop containers"; exit 1; }
+
+            echo "Cleaning up old images"
+            docker system prune -af || { echo "Failed to prune images"; exit 1; }
+            
+            echo "Rebuilding and starting containers"
+            docker compose up -d --build --remove-orphans || { echo "Failed to start containers"; exit 1; }
+
+            echo "Deployment done! Container status:"
+            docker compose ps
+          "
+
+      # Step 4: Clean up
+      - name: CleanUp
+        if: always() # Run regardless of job success
+        run: rm -rf ~/.ssh
