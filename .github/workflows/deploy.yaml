@@ -41,6 +41,8 @@ jobs:
               git pull origin ${{ secrets.MAIN_BRANCH }}
             fi
             
+            sudo chown -R 82:82 ./wp-content/plugins/listing/
+
             echo "Exporting secrets"
             export DB_ROOT_PASSWORD="${{ secrets.DB_ROOT_PASSWORD }}"
             export DB_USER="${{ secrets.DB_USER }}"
