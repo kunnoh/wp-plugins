@@ -24,6 +24,20 @@ return array(
 		),
 		'textdomain' => 'listing',
 		'editorScript' => 'file:./index.js',
-		'render' => 'file:./render.php'
+		'render' => 'file:./render.php',
+		'attributes' => array(
+			'itemsPerPage' => array(
+				'type' => 'number',
+				'default' => 8
+			),
+			'orderBy' => array(
+				'type' => 'string',
+				'default' => 'date'
+			),
+			'order' => array(
+				'type' => 'string',
+				'default' => 'desc'
+			)
+		)
 	)
 );

@@ -19,5 +19,19 @@
 	},
 	"textdomain": "listing",
 	"editorScript": "file:./index.js",
-	"render": "file:./render.php"
+	"render": "file:./render.php",
+	"attributes": {
+		"itemsPerPage": {
+			"type": "number",
+			"default": 8
+		},
+		"orderBy": {
+			"type": "string",
+			"default": "date"
+		},
+		"order": {
+			"type": "string",
+			"default": "desc"
+		}
+	}
 }
