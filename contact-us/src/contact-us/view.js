@@ -21,5 +21,5 @@
  */
 
 /* eslint-disable no-console */
-console.log( 'Hello World! (from create-block-contact block)' );
+console.log( 'Hello World! (from create-block-contact-us block)' );
 /* eslint-enable no-console */

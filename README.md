@@ -11,7 +11,7 @@ npm install @wordpress/components --save
 ## Generate a block
 Install create-block.
 ```sh
-npx @wordpress/create-block@latest todo-list
+npx @wordpress/create-block@latest --variant dynamic todo-list
 cd todo-list
 npm start
 ```
@@ -21,7 +21,12 @@ Use **wp-env** for development mode. Go to root dir of the plugin, and run:
 ```sh
 wp-env start
 ```
+This will run wordpress and mysql containers in development mode.
 
+Stop and delete docker containers.
+```sh
+wp-env stop
+``` 
 
 ## Reference
 1. [Wordpress block editor](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-create-block/)
