@@ -2,31 +2,30 @@ import { __ } from '@wordpress/i18n';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import './editor.scss';
 import { PanelBody, TextControl } from '@wordpress/components';
+import { Panel } from '@wordpress/components';
 
 export default function Edit({attributes, setAttributes}) {
-	// const blockProps = useBlockProps({});
-	const {
-		phone,
-		email
-	} = attributes;
+	const { phone, email } = attributes;
 
 	return (
-		<>
-			<InspectorControls>
-				<PanelBody title={__('Contact Settings', 'textdomain')}>
-					<TextControl
-						label={__('Phone Number', 'textdomain')}
-						value={phone}
-						onChange={(value) => setAttributes({ phone: value })}
-						help={__('Enter the phone number with country code', 'textdomain')}
-					/>
-					<TextControl
-						label={__('Email Address', 'textdomain')}
-						value={email}
-						onChange={(value) => setAttributes({ email: value })}
-						help={__('Enter the email address', 'textdomain')}
-					/>
-				</PanelBody>
+		<div {...useBlockProps()}>
+			<InspectorControls key="setting">
+				<Panel>
+					<PanelBody title='contacts info' initialOpen={true}>
+						<TextControl
+							label={__('Phone Number')}
+							value={phone}
+							onChange={(val) => setAttributes({ phone: val })}
+							help={__('Enter the phone number with country code', 'textdomain')}
+						/>
+						<TextControl
+							label={__('Email Address')}
+							value={email}
+							onChange={(val) => setAttributes({ email: val })}
+							help={__('Enter the email address', 'textdomain')}
+						/>
+					</PanelBody>
+				</Panel>
 			</InspectorControls>
 			<div className='row'>
 				<div>
@@ -46,6 +45,6 @@ export default function Edit({attributes, setAttributes}) {
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }
