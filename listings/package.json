@@ -1,5 +1,5 @@
 {
-	"name": "listing",
+	"name": "listings",
 	"version": "0.1.0",
 	"description": "Example block scaffolded with Create Block tool.",
 	"author": "The WordPress Contributors",
@@ -15,9 +15,6 @@
 		"start": "wp-scripts start --webpack-copy-php --blocks-manifest"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^30.17.0"
-	},
-	"dependencies": {
-		"@wordpress/data": "^10.25.0"
+		"@wordpress/scripts": "^30.18.0"
 	}
 }
