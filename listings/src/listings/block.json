@@ -9,7 +9,12 @@
 	"description": "Example block scaffolded with Create Block tool.",
 	"example": {},
 	"supports": {
-		"html": false
+		"html": false,
+		"align": true,
+		"typography": {
+			"fontSize": true,
+			"textAlign": true
+		}
 	},
 	"textdomain": "listings",
 	"editorScript": "file:./index.js",
