@@ -1,4 +1,6 @@
 import { registerBlockType } from '@wordpress/blocks';
+import { useBlockProps } from '@wordpress/block-editor';
+
 import './style.scss';
 import Edit from './edit';
 import metadata from './block.json';
@@ -25,7 +27,7 @@ registerBlockType( metadata.name, {
 		},
 		email:{
 			type: "string",
-			default: "info@mbakapower.energy"
+			default: "info@mbaka.energy"
 		}
 	},
 	save: ({attributes}) => null,

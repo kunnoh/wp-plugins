@@ -1,0 +1,44 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-create-block-contact {
+	background-color: white;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	color: black;
+	padding: 1em;
+}
+.row{
+	display: flex;
+	flex-direction: column;
+}
+.col{
+	display: flex;
+	flex-direction: column;
+}
+.address{
+	font-size: 14px;
+	padding: 0 10px;
+	width: 100%;
+}
+.address a{
+	text-decoration: none;
+	color: rgb(101, 113, 16);
+}
+.address a:hover{
+	color: rgb(165, 180, 0);
+}
+.socials{
+	justify-content: space-between;
+	align-items: center;
+	gap: 1em;
+}
+.socials img{
+	width: 40px;
+	height: 40px;
+}

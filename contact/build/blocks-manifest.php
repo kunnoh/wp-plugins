@@ -8,33 +8,19 @@ return array(
 		'version' => '0.1.0',
 		'title' => 'Contact Us',
 		'category' => 'widgets',
-		'description' => 'Contact Us block scaffolded with Create Block tool.',
+		'icon' => 'smiley',
+		'description' => 'Example block scaffolded with Create Block tool.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'color' => array(
-				'background' => false,
-				'text' => true
-			),
-			'html' => false,
-			'typography' => array(
-				'fontSize' => true
-			)
+			'html' => false
 		),
 		'textdomain' => 'contact-us',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css',
-		'attributes' => array(
-			'phone' => array(
-				'type' => 'string',
-				'default' => '0722000111'
-			),
-			'email' => array(
-				'type' => 'string',
-				'default' => 'info@example.com'
-			)
-		)
+		'render' => 'file:./render.php',
+		'viewScript' => 'file:./view.js'
 	)
 );
