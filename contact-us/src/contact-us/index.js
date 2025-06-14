@@ -17,16 +17,32 @@ const Icon = (
 registerBlockType( metadata.name, {
 	edit: Edit,
 	icon: Icon,
-	
 	attributes: {
 		phone: {
 			type: 'string',
-			default: '+254722000111'
+			default: '+254704282835'
 		},
 		email:{
 			type: "string",
 			default: "info@mbakapower.energy"
 		}
 	},
-	save: ({attributes}) => null,
+	save: ({ attributes }) => {
+		const { phone, email } = attributes;
+		return (
+			<div className='row'>
+				<div>
+					<h2>Contact Us</h2>
+					<div className="row address">
+						<a title="mbakapower phone number" href={`tel:${phone}`}>
+							Phone: {phone}
+						</a>
+						<a title="mbakapower email address" href={`mailto:${email}`}>
+							Email: {email}
+						</a>
+					</div>
+				</div>
+			</div>
+		);
+	},
 } );
