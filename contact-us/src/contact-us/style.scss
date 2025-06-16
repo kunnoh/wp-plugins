@@ -11,15 +11,17 @@
 	flex-direction: row;
 	width: 100%;
 	color: black;
-	padding: 1em;
+	padding: 0.5em;
 }
 .row{
 	display: flex;
 	flex-direction: column;
+	flex-wrap: wrap;
 }
 .col{
 	display: flex;
 	flex-direction: column;
+	flex-wrap: wrap;
 }
 .address{
 	font-size: 14px;

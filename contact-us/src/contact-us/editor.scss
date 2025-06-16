@@ -6,4 +6,15 @@
 
 .wp-block-create-block-contact-us {
 	border: 1px dotted #f00;
+	padding: 0.5em;
+}
+.row{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+.col{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
 }

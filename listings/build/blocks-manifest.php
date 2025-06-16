@@ -8,13 +8,22 @@ return array(
 		'version' => '0.1.0',
 		'title' => 'Listings',
 		'category' => 'widgets',
-		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'description' => 'Listings block scaffolded with Create Block tool.',
 		'example' => array(
 			
 		),
 		'supports' => array(
-			'html' => false
+			'html' => false,
+			'align' => true,
+			'color' => array(
+				'background' => true,
+				'text' => true,
+				'link' => true
+			),
+			'typography' => array(
+				'fontSize' => true,
+				'textAlign' => true
+			)
 		),
 		'textdomain' => 'listings',
 		'editorScript' => 'file:./index.js',
