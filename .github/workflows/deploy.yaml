@@ -56,6 +56,7 @@ jobs:
             export WORDPRESS_WP_PLUGIN_URL="${{ secrets.WORDPRESS_WP_PLUGIN_URL }}"
             export CERTBOT_EMAIL="${{ secrets.CERTBOT_EMAIL }}"
             export DOMAIN="${{ secrets.DOMAIN }}"
+            export WORDPRESS_DEBUG="${{ secrets.WORDPRESS_DEBUG }}"
 
             echo "Stopping old containers"
             docker compose down || { echo "Failed to stop containers"; exit 1; }

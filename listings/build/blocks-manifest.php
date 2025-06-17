@@ -16,9 +16,14 @@ return array(
 			'html' => false,
 			'align' => true,
 			'color' => array(
+				'gradients' => true,
 				'background' => true,
 				'text' => true,
 				'link' => true
+			),
+			'spacing' => array(
+				'margin' => true,
+				'padding' => true
 			),
 			'typography' => array(
 				'fontSize' => true,

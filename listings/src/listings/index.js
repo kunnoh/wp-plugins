@@ -9,6 +9,6 @@ const Icon = ("");
 
 registerBlockType( metadata.name, {
 	edit: Edit,
-	save: Save,
+	save: () => null,
 	icon: 'desktop',
 });
