@@ -28,6 +28,28 @@ Stop and delete docker containers.
 wp-env stop
 ``` 
 
+### Configuration
+Create `.wpwp-env.json` file in the root directory.  
+Add this:  
+```json
+{
+    "core": null,
+    "phpVersion": null,
+    "plugins": [
+        "./listings",
+        "./contact-us"
+    ],
+    "config": {
+        "WP_DEBUG": true,
+        "WP_DEBUG_LOG": true,
+        "WP_DEBUG_DISPLAY": true
+    },
+    "mappings": {
+        
+    }
+}
+```
+
 ## Reference
 1. [Wordpress block editor](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-create-block/)
 2. [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/)
