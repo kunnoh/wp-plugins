@@ -11,8 +11,7 @@
         "WP_DEBUG_LOG": true,
         "WP_DEBUG_DISPLAY": true
     },
-    "mappings": {
-    },
+    "mappings": {},
     "env": {
         "tests": {
             "config":{
