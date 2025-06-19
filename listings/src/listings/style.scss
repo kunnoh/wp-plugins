@@ -6,12 +6,13 @@
  */
 
 .wp-block-create-block-listings {
-	background-color: #6cb2d2;
+	background-color: #332500;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
 	color: #000000;
 	padding: 0.5em;
+	min-height: 2em;
 }
 .row{
 	display: flex;
