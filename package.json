@@ -5,7 +5,8 @@
     "@wordpress/env": "^10.25.0"
   },
   "scripts": {
-    "start": "wp-env start --update",
-    "deploy": "cd listings && npm run build && cd .. && wp-env stop && wp-env start"
+    "start": "cd listings && npm run build && cd .. && wp-env stop && wp-env start --update",
+    "start:listing": "cd listings && npm run build && cd .. && wp-env stop && wp-env start --update",
+    "start:contact": "cd listings && npm run build && cd .. && wp-env stop && wp-env start --update"
   }
 }

@@ -20,11 +20,11 @@
     // Get posts
     $query = new WP_Query($args);
     $listings = $query->posts;
-    $title = $listings[0]->post_title;
     
-    // echo '<pre>';
-    //     print_r($listings[0]);
-    // echo '</pre>';
+    echo '<pre>';
+        print_r($listings[0]);
+        print_r($GLOBALS);
+    echo '</pre>';
 ?>
 
 <div>
@@ -34,15 +34,15 @@
         </div>
     <?php else : ?>
         <div class="listings-container">
-            <h1>Listings</h2>
-            <?php foreach ($listings as $index => $listing) : ?>
-                <div class="listing-item">
-                    <ul>
-                        <li><?php echo esc_html(($index + 1) . ". " . $listing->post_title); ?></li>
-                    </ul>
-                </div>
-            <?php endforeach; ?>
+            <h2>Listings</h2>
+            <div class="listing-item">
+                <ul>
+                    <?php foreach ($listings as $index => $listing) : ?>
+                        <li><?php echo esc_html($listing->post_title); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
         </div>
     <?php endif; ?>
-    <?php wp_reset_postdata();?>
+    <?php wp_reset_postdata(); print_r($GLOBALS);?>
 </div>
