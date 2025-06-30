@@ -23,7 +23,7 @@
     
     echo '<pre>';
         print_r($listings[0]);
-        print_r($GLOBALS);
+        // print_r($GLOBALS);
     echo '</pre>';
 ?>
 
@@ -44,5 +44,5 @@
             </div>
         </div>
     <?php endif; ?>
-    <?php wp_reset_postdata(); print_r($GLOBALS);?>
+    <?php wp_reset_postdata();?>
 </div>

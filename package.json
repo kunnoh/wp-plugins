@@ -7,6 +7,6 @@
   "scripts": {
     "start": "cd listings && npm run build && cd .. && wp-env stop && wp-env start --update",
     "start:listing": "cd listings && npm run build && cd .. && wp-env stop && wp-env start --update",
-    "start:contact": "cd listings && npm run build && cd .. && wp-env stop && wp-env start --update"
+    "start:contact": "cd contact && npm run build && cd .. && wp-env stop && wp-env start --update"
   }
 }
